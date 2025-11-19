@@ -34,7 +34,7 @@ export function useTasks() {
     setTasks(sortTasks(data));
   };
 
-  const addTask = async (data: Partial<Task>) => {
+  const addTask = async (data: any ) => {
     const token = getToken();
     if (!token) return;
 
