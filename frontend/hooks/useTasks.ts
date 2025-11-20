@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import type { Task } from "@/types/task";
+import toast from "react-hot-toast";
+
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
@@ -51,19 +53,25 @@ export function useTasks() {
   };
 
   const updateTask = async (id: number, data: Partial<Task>) => {
-    const token = getToken();
+  const token = getToken();
 
-    await fetch(`${API_URL}/api/tasks/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  await fetch(`${API_URL}/api/tasks/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-    fetchTasks();
-  };
+  toast.success(
+    data.status === "completed"
+      ? "Task marked as completed 🎉"
+      : "Task moved back to pending ⏪"
+  );
+
+  fetchTasks();
+};
 
   const deleteTask = async (id: number) => {
     const token = getToken();
@@ -75,6 +83,8 @@ export function useTasks() {
 
     fetchTasks();
   };
+
+  
 
   useEffect(() => {
     fetchTasks();
