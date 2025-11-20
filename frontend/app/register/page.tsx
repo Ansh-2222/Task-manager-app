@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { register } from "@/services/authService";
+import { toast } from "react-hot-toast";
+
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
