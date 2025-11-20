@@ -30,7 +30,7 @@ export function useTasks() {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    if (!res.ok) return console.error("❌ Failed to fetch tasks");
+    if (!res.ok) return console.error("Failed to fetch tasks");
 
     const data = await res.json();
     setTasks(sortTasks(data));
@@ -66,8 +66,8 @@ export function useTasks() {
 
   toast.success(
     data.status === "completed"
-      ? "Task marked as completed 🎉"
-      : "Task moved back to pending ⏪"
+      ? "Task marked as completed "
+      : "Task moved back to pending "
   );
 
   fetchTasks();
