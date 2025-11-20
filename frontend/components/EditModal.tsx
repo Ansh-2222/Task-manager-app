@@ -34,7 +34,7 @@ export default function EditModal({ task, onClose, onSave }: Props) {
         />
 
         <select
-          className="w-full px-3 py-2 bg-white/10 border border-gray-500 rounded-lg"
+          className="px-4 py-2 bg-gray-800 text-white border border-gray-500 rounded-lg focus:border-blue-500 focus:outline-none"
           value={priority}
           onChange={(e) => setPriority(e.target.value as "low" | "medium" | "high")}
         >
