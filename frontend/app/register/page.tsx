@@ -9,21 +9,19 @@ export default function RegisterPage() {
   const [confirm, setConfirm] = useState("");
 
   async function handleRegister(e: any) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (password !== confirm) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    try {
-      await register(username, password);
-      alert("Account created successfully!");
-      window.location.href = "/login";
-    } catch (err) {
-      alert("Registration failed. Try again.");
-    }
+  if (password !== confirm) {
+    toast.error("Passwords do not match");
+    return;
   }
+
+  await register(username, password);
+
+  setTimeout(() => {
+    window.location.href = "/";
+  }, 800); // small delay for animation
+}
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black/40 text-white">

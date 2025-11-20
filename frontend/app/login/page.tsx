@@ -8,14 +8,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   async function handleLogin(e: any) {
-    e.preventDefault();
-    try {
-      await login(username, password);
-      window.location.href = "/";
-    } catch (err) {
-      alert("Invalid username or password");
-    }
-  }
+  e.preventDefault();
+  await login(username, password);
+
+  setTimeout(() => {
+    window.location.href = "/";
+  }, 800);
+}
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black/40 text-white">
